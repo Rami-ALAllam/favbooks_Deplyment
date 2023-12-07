@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/stylingfav.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome, {{request.session.username}}!</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    <hr>
+
+    <div class="container">
+    <h1>Your Favorite Books</h1>
+    <ul>
+        {% for book in fav_books %}
+        <li>
+            <a href="/book/{{book.id}}">{{book.title}}</a>
+        </li>
+        {%endfor%}
+    </ul>
+    <a href="/main" class="right">Go Back</a>
+</div>
+</body>
+</html>

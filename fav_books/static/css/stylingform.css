@@ -1,0 +1,37 @@
+*{
+    font-family: sans-serif;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+input{
+    border: 2px solid black;
+    padding: 6px 0px;
+    margin-left: 30px;
+}
+.c1{
+    margin-left: 65px;
+}
+.c2{
+    margin-left: 36px;
+    padding: 6px 26px;
+}
+.c3{
+    margin-left: 35px;
+}
+.c4{
+    margin-left: 20px;
+}
+.c5{
+    margin-left: 60px;
+}
+.btn{
+    font-size: small;
+    color: black;
+    background-color: rgb(136, 236, 118);
+    padding: 10px 30px;
+    border: 3px solid black;
+    box-shadow: 3px 3px black;
+    margin-left: 50px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/stylingmain.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome, {{request.session.username}}!</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    <hr>
+    <div class="container">
+
+        <div class="left">
+            <h1>Add a Favorite Book</h1>
+            <form method="post" action="create_book">
+                {%csrf_token%}
+                <p>Title
+                    <input type="text" name="title" class="c1">
+                </p>
+                <p>Description
+                    <input type="text" name="desc" class="c2">
+                </p>
+                <button type="submit" class="btn">Add</button>
+            </form>
+            <a href="/book/myfav">My Favorite Books</a>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="right">
+            <h1>All Books</h1>
+            {%for book in allbooks%}
+            <p class="a2"><a href="book/{{book.id}}">{{book.title}}</a></p>
+            <p>(added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+
+            {% if loggeduser in book.users_who_like.all %}
+            <p>This is one of your favorites</p>
+            {%elif loggeduser not in book.users_who_like.all%}
+            <a href="/book/{{book.id}}/favorite">Add to Favorites</a><br>
+            {%endif%}
+            {%endfor%}
+        </div>
+    </div>
+</body>
+
+</html>

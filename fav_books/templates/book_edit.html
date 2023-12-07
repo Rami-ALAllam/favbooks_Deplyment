@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/stylingbook.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome, {{request.session.username}}!</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    <hr>
+
+    <div class="container">
+
+        <div class="left">
+        <form method="post" action="/book/update">
+            {%csrf_token%}
+            
+            <input type="hidden" name="onebook_id" value="{{onebook.id}}">
+            <input type="text" name="title" value="{{onebook.title}}">
+            <a href="/main">Go Back</a>
+            <p>Added by {{onebook.uploaded_by.first_name}} {{onebook.uploaded_by.last_name}}</p>
+            <p>Added on {{onebook.created_at}}</p>
+            <p>Last updated: {{onebook.updated_at}}</p>
+            <p class="top">Description:<br>
+                <textarea name="desc" rows="4" cols="50">{{onebook.desc}}</textarea>
+            </p>
+            <button type="submit" class="btn">Update</button>
+            <a href="/book/{{onebook.id}}/destroy" class="btn" id="b1">Delete</a>
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="right">
+            <h1>Users who like this Book:</h1>
+            <ul>
+            {% for users in onebook.users_who_like.all %}
+            <li>{{users.first_name}} {{users.last_name}}</li>
+            {%endfor%}
+            </ul>
+        </div>
+
+    </div>
+    
+</body>
+
+</html>

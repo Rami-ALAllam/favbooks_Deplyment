@@ -1,0 +1,44 @@
+
+* {
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    padding-left: 20px;
+    gap: 40%;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+.header a{
+    font-size: larger;
+    margin-top: 30px;
+}
+hr{
+    border: 2px solid black;
+}
+.c1{
+    margin-left: 50px;
+    border: 2px solid black;
+    padding: 5px 0px;
+}
+.c2{
+    border: 2px solid black;
+    padding: 15px 0px;
+}
+.btn{
+    font-size: large;
+    color: black;
+    background-color: rgb(136, 236, 118);
+    padding: 5px 20px;
+    border: 3px solid black;
+    box-shadow: 3px 3px black;
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+.a2{
+    padding-top: 30px;
+}

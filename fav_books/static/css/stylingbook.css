@@ -1,0 +1,46 @@
+
+* {
+    font-family: sans-serif;
+}
+.container {
+    display: flex;
+    padding-left: 20px;
+    gap: 40%;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+.header a{
+    font-size: larger;
+    margin-top: 30px;
+}
+hr{
+    border: 2px solid black;
+}
+.right ul{
+    margin-bottom: 50px;
+}
+input, textarea{
+    border: 2px solid black;
+}
+input{
+    font-size: large;
+    padding: 20px 70px;
+}
+.btn{
+    font-size: small;
+    color: black;
+    background-color: rgb(136, 236, 118);
+    padding: 10px 30px;
+    border: 3px solid black;
+    box-shadow: 3px 3px black;
+    margin-left: 50px;
+}
+#b1{
+    background-color: #990000;
+    color: white;
+    text-decoration: none;
+}

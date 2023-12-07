@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/stylingbook.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome, {{request.session.username}}!</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    <hr>
+    
+    <div class="container">
+
+        <div class="left">
+            <a href="/main" class="right">Go Back</a>
+            <h1>{{onebook.title}}</h1>
+            <p>Added by {{onebook.uploaded_by.first_name}} {{onebook.uploaded_by.last_name}}</p>
+            <p>Added on {{onebook.created_at}}</p>
+            <p>Last updated: {{onebook.updated_at}}</p>
+            <p>Description: {{onebook.desc}}</p>
+        </div>
+
+        <div class="right">
+            <h1>Users who like this Book:</h1>
+            <ul>
+                {% for users in onebook.users_who_like.all %}
+                <li>{{users.first_name}} {{users.last_name}}</li>
+                {%endfor%}
+            </ul>
+            {% if loggeduser in onebook.users_who_like.all %}
+                <a href="/book/{{onebook.id}}/unfavorite">UnFavorite</a>
+                {%elif loggeduser not in onebook.users_who_like.all%}
+                <a href="/book/{{onebook.id}}/favorite">Add to Favorites</a><br>
+                {%endif%}
+        </div>
+    </div>
+</body>
+
+</html>
